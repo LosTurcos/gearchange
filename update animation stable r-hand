@@ -1,0 +1,20 @@
+function PlayGearChangeAnimation(gear)
+    RequestAnimDict(animationDict)
+    while not HasAnimDictLoaded(animationDict) do
+        Citizen.Wait(0)
+    end
+    
+    TaskPlayAnimAdvanced(PlayerPedId(), animationDict, animationName,
+        GetEntityBoneIndexByName(PlayerPedId(), "IK_R_Hand"),
+        0.0, 0.0, 0.0, -- Position offsets
+        0.0, 0.0, 0.0, -- Rotation offsets
+        1.0,  -- Blend in speed
+        1.0,  -- Playback speed
+        -1,   -- Looping (-1 for no looping)
+        0,    -- Flags
+        0.0   -- Timeout in seconds
+    )
+
+    Citizen.Wait(animationDuration)
+    StopAnimTask(PlayerPedId(), animationDict, animationName, 1.0)
+end
